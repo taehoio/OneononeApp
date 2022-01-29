@@ -14,9 +14,13 @@
     "eject-web": "react-scripts eject"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.7",
+    "@react-navigation/native-stack": "^6.3.0",
     "react": "17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "0.66.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.2",
     "react-native-web": "^0.17.5"
   },
   "devDependencies": {
