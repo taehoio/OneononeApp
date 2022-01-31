@@ -4,37 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import {RootStacknavigationProp} from '../App';
 import {useTailwind} from 'tailwind-rn';
 import CategoryList from '../components/CategoryList';
+import categories from '../categories';
 
 function HomeScreen() {
   const navigation = useNavigation();
   const tailwind = useTailwind();
-
-  const categories = [
-    {
-      name: 'Random',
-    },
-    {
-      name: 'About Manager',
-    },
-    {
-      name: 'Career development',
-    },
-    {
-      name: 'Conversation starters',
-    },
-    {
-      name: 'Job satisfaction',
-    },
-    {
-      name: 'Other',
-    },
-    {
-      name: 'Team and company',
-    },
-    {
-      name: 'Work-life',
-    },
-  ];
 
   return (
     <View>

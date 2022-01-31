@@ -10,7 +10,8 @@ import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind';
 
 import HomeScreen from './screens/HomeScreen';
-import DetailScreen from './screens/DetailScreen';
+import CategoryScreen from './screens/CategoryScreen';
+import QuestionScreen from './screens/QuestionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,8 @@ const linking = {
   config: {
     screens: {
       Home: '',
-      Detail: 'detail',
+      Category: 'categories/:categoryId',
+      Question: 'questions/:questionId',
     },
   },
 };
@@ -29,8 +31,9 @@ function App() {
     <TailwindProvider utilities={utilities}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="1on1 Questions" component={HomeScreen} />
-          <Stack.Screen name="Detail" component={DetailScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Category" component={CategoryScreen} />
+          <Stack.Screen name="Question" component={QuestionScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </TailwindProvider>
