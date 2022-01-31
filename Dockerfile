@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN yarn install --frozen-lockfile
 RUN yarn run build:tailwind
-RUN yarn run build-web
+RUN yarn run build:web
 
 
 FROM node:16-alpine AS runner
