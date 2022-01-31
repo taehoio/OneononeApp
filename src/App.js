@@ -29,7 +29,7 @@ function App() {
     <TailwindProvider utilities={utilities}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="1on1 Questions" component={HomeScreen} />
           <Stack.Screen name="Detail" component={DetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
