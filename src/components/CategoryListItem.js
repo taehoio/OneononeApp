@@ -30,7 +30,7 @@ function CategoryListItem({category}) {
 
   return (
     <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
-      <View style={tailwind('px-4 pt-2')}>
+      <View style={tailwind('px-4 py-1')}>
         <View style={tailwind('w-full rounded-lg bg-blue-500')}>
           <Text
             style={tailwind(
