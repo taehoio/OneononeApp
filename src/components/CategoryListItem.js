@@ -6,13 +6,13 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 import {useTailwind} from 'tailwind-rn';
-import {useNavigation} from '@react-navigation/native';
 
 function CategoryListItem({category}) {
   const navigation = useNavigation();
   const onPress = () => {
-    if (category.id === 0) {
+    if (category.type === 'random') {
       navigation.navigate('Question', {
         questionId: 'random',
       });
@@ -25,18 +25,19 @@ function CategoryListItem({category}) {
   };
 
   const tailwind = useTailwind();
-
-  const {name} = category;
+  const backgroundColorText = category.backgroundColorText || 'cyan';
 
   return (
     <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
       <View style={tailwind('px-4 py-1')}>
-        <View style={tailwind('w-full rounded-lg bg-blue-500')}>
+        <View
+          style={tailwind(`w-full rounded-lg bg-${backgroundColorText}-500`)}>
+          <View style={tailwind('bg-fuchsia-500 bg-cyan-500')} />
           <Text
             style={tailwind(
               'p-4 text-gray-100 text-4xl font-bold text-center',
             )}>
-            {name}
+            {category.name}
           </Text>
         </View>
       </View>
