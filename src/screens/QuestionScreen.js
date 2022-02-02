@@ -6,19 +6,19 @@ import {useTailwind} from 'tailwind-rn';
 import {useQuery} from 'react-query';
 
 import Question from '../components/Question';
-import {getQuestion} from '../api/question';
+import {getQuestion, getRandomQuestionByCategoryId} from '../api/question';
 
 function QuestionScreen() {
   const navigation = useNavigation();
 
   const {params} = useRoute();
-  const {questionId} = params;
+  const {questionId, categoryId} = params;
 
   const tailwind = useTailwind();
 
   const {data, isLoading} = useQuery(
-    ['question', questionId],
-    () => getQuestion(questionId),
+    ['question', questionId, categoryId],
+    () => getQuestionWithOrWithoutCategoryId(questionId, categoryId),
     {
       cacheTime: 0,
     },
@@ -42,6 +42,14 @@ function QuestionScreen() {
   }
 
   return <ActivityIndicator size="large" style={tailwind('h-full w-full')} />;
+}
+
+function getQuestionWithOrWithoutCategoryId(questionId, categoryId) {
+  console.log(categoryId);
+  if (categoryId) {
+    return getRandomQuestionByCategoryId(categoryId);
+  }
+  return getQuestion(questionId);
 }
 
 export default QuestionScreen;

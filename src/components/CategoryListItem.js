@@ -12,15 +12,14 @@ import {useTailwind} from 'tailwind-rn';
 function CategoryListItem({category}) {
   const navigation = useNavigation();
   const onPress = () => {
-    if (category.type === 'random') {
-      navigation.navigate('Question', {
-        questionId: 'random',
-      });
-      return;
+    let categoryId = '';
+    if (category.type === 'category') {
+      categoryId = category.id;
     }
 
-    navigation.navigate('Category', {
-      categoryId: category.id,
+    navigation.navigate('Question', {
+      categoryId,
+      questionId: 'random',
     });
   };
 
