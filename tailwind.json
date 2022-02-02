@@ -1,4 +1,9 @@
 {
+	"flex": {
+		"style": {
+			"display": "flex"
+		}
+	},
 	"h-full": {
 		"style": {
 			"height": "100%"
@@ -7,6 +12,18 @@
 	"w-full": {
 		"style": {
 			"width": "100%"
+		}
+	},
+	"flex-1": {
+		"style": {
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"flexBasis": "0%"
+		}
+	},
+	"flex-row": {
+		"style": {
+			"flexDirection": "row"
 		}
 	},
 	"items-center": {
