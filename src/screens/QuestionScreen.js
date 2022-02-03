@@ -18,7 +18,7 @@ function QuestionScreen() {
   const navigation = useNavigation();
 
   const {params} = useRoute();
-  const {questionId, categoryId} = params;
+  const {questionId, categoryId, categoryName} = params;
 
   const tailwind = useTailwind();
 
@@ -32,6 +32,10 @@ function QuestionScreen() {
 
   if (data) {
     if (questionId !== 'random') {
+      navigation.setOptions({
+        title: `Question - ${categoryName}`,
+      });
+
       return (
         <ScrollView
           contentContainerStyle={{flex: 1}}
@@ -41,6 +45,7 @@ function QuestionScreen() {
                 const explicitQuestionId = data.question.id;
                 navigation.navigate('Question', {
                   categoryId,
+                  categoryName,
                   questionId: 'random',
                 });
               }}
@@ -57,6 +62,8 @@ function QuestionScreen() {
     setTimeout(() => {
       const explicitQuestionId = data.question.id;
       navigation.navigate('Question', {
+        categoryId,
+        categoryName,
         questionId: explicitQuestionId,
       });
     });
