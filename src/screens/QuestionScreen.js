@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -18,7 +18,7 @@ function QuestionScreen() {
   const navigation = useNavigation();
 
   const {params} = useRoute();
-  const {questionId, categoryId} = params;
+  const {questionId, categoryId, categoryName} = params;
 
   const tailwind = useTailwind();
 
@@ -29,6 +29,12 @@ function QuestionScreen() {
       cacheTime: 0,
     },
   );
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: `Question - ${categoryName}`,
+    });
+  });
 
   if (data) {
     if (questionId !== 'random') {
@@ -41,6 +47,7 @@ function QuestionScreen() {
                 const explicitQuestionId = data.question.id;
                 navigation.navigate('Question', {
                   categoryId,
+                  categoryName,
                   questionId: 'random',
                 });
               }}
@@ -57,6 +64,8 @@ function QuestionScreen() {
     setTimeout(() => {
       const explicitQuestionId = data.question.id;
       navigation.navigate('Question', {
+        categoryId,
+        categoryName,
         questionId: explicitQuestionId,
       });
     });

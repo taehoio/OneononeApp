@@ -13,12 +13,16 @@ function CategoryListItem({category}) {
   const navigation = useNavigation();
   const onPress = () => {
     let categoryId = '';
+    let categoryName = 'Random';
+
     if (category.type === 'category') {
       categoryId = category.id;
+      categoryName = category.name;
     }
 
     navigation.navigate('Question', {
       categoryId,
+      categoryName,
       questionId: 'random',
     });
   };
