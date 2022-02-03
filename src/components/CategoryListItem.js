@@ -31,7 +31,10 @@ function CategoryListItem({category}) {
   const backgroundColorText = category.backgroundColorText || 'cyan';
 
   return (
-    <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      activeOpacity={0.5}
+      onPress={onPress}>
       <View style={tailwind('px-4 py-1')}>
         <View
           style={tailwind(`w-full rounded-lg bg-${backgroundColorText}-500`)}>
