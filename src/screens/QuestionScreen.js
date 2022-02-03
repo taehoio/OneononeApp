@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/core';
 import {useTailwind} from 'tailwind-rn';
@@ -16,7 +22,7 @@ function QuestionScreen() {
 
   const tailwind = useTailwind();
 
-  const {data, isLoading} = useQuery(
+  const {data, isLoading, refetch, isRefetching} = useQuery(
     ['question', questionId, categoryId],
     () => getQuestionWithOrWithoutCategoryId(questionId, categoryId),
     {
@@ -27,9 +33,24 @@ function QuestionScreen() {
   if (data) {
     if (questionId !== 'random') {
       return (
-        <Question style={tailwind('h-full w-full bg-teal-500')}>
-          {data.question.question}
-        </Question>
+        <ScrollView
+          contentContainerStyle={{flex: 1}}
+          refreshControl={
+            <RefreshControl
+              onRefresh={() => {
+                const explicitQuestionId = data.question.id;
+                navigation.navigate('Question', {
+                  categoryId,
+                  questionId: 'random',
+                });
+              }}
+              refreshing={isRefetching}
+            />
+          }>
+          <Question style={tailwind('h-full w-full bg-teal-500')}>
+            {data.question.question}
+          </Question>
+        </ScrollView>
       );
     }
 
@@ -45,7 +66,6 @@ function QuestionScreen() {
 }
 
 function getQuestionWithOrWithoutCategoryId(questionId, categoryId) {
-  console.log(categoryId);
   if (categoryId) {
     return getRandomQuestionByCategoryId(categoryId);
   }
