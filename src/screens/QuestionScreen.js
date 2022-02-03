@@ -32,7 +32,7 @@ function QuestionScreen() {
 
   useEffect(() => {
     navigation.setOptions({
-      title: `Question - ${categoryName}`,
+      title: categoryName ? `Question - ${categoryName}` : 'Question',
     });
   });
 
@@ -75,7 +75,7 @@ function QuestionScreen() {
 }
 
 function getQuestionWithOrWithoutCategoryId(questionId, categoryId) {
-  if (categoryId) {
+  if (questionId === 'random' && categoryId) {
     return getRandomQuestionByCategoryId(categoryId);
   }
   return getQuestion(questionId);
