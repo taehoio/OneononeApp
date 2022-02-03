@@ -4,7 +4,7 @@ import {useTailwind} from 'tailwind-rn';
 
 import CategoryListItem from './CategoryListItem';
 
-function CategoryList({categories}) {
+function CategoryList({categories, refresh, isRefreshing}) {
   const tailwind = useTailwind();
 
   return (
