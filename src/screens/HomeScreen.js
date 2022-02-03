@@ -35,7 +35,7 @@ function HomeScreen() {
   }
 
   return (
-    <View style={tailwind('py-1')}>
+    <View style={tailwind('py-1 flex-1 flex-row')}>
       <CategoryList categories={toCategoryListItems(data.categories)} />
     </View>
   );
