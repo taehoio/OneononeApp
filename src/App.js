@@ -9,7 +9,6 @@ import {TailwindProvider} from 'tailwind-rn';
 import utilities from './tailwind';
 
 import HomeScreen from './screens/HomeScreen';
-import CategoryScreen from './screens/CategoryScreen';
 import QuestionScreen from './screens/QuestionScreen';
 
 const Stack = createNativeStackNavigator();
@@ -37,7 +36,6 @@ function App() {
               component={HomeScreen}
               options={{title: '1on1 Meeting Questions'}}
             />
-            <Stack.Screen name="Category" component={CategoryScreen} />
             <Stack.Screen name="Question" component={QuestionScreen} />
           </Stack.Navigator>
         </NavigationContainer>

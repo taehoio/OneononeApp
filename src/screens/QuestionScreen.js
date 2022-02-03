@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -30,12 +30,14 @@ function QuestionScreen() {
     },
   );
 
+  useEffect(() => {
+    navigation.setOptions({
+      title: `Question - ${categoryName}`,
+    });
+  });
+
   if (data) {
     if (questionId !== 'random') {
-      navigation.setOptions({
-        title: `Question - ${categoryName}`,
-      });
-
       return (
         <ScrollView
           contentContainerStyle={{flex: 1}}
