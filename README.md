@@ -4,4 +4,4 @@
 
 Supports iOS, Android, and Web.
 
-![one-on-one app screenshot](./screenshots/oneononeapp.png)
+![one-on-one app screenshot](./screenshots/OneononeApp.png)
