@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useTailwind} from 'tailwind-rn';
+import Animated, {FadeInDown} from 'react-native-reanimated';
 
 function CategoryListItem({category}) {
   const navigation = useNavigation();
@@ -35,7 +36,7 @@ function CategoryListItem({category}) {
       accessibilityRole="button"
       activeOpacity={0.5}
       onPress={onPress}>
-      <View style={tailwind('px-4 py-1')}>
+      <Animated.View entering={FadeInDown} style={tailwind('px-4 py-1')}>
         <View
           style={tailwind(`w-full rounded-lg bg-${backgroundColorText}-500`)}>
           <View style={tailwind('bg-fuchsia-500 bg-cyan-500')} />
@@ -46,7 +47,7 @@ function CategoryListItem({category}) {
             {category.name}
           </Text>
         </View>
-      </View>
+      </Animated.View>
     </TouchableOpacity>
   );
 }

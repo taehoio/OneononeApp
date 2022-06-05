@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
+import Animated, {Layout} from 'react-native-reanimated';
 
 import CategoryListItem from './CategoryListItem';
 
