@@ -9,9 +9,10 @@
     "test": "jest",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "format": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
-    "dev:web": "craco start",
-    "build:web": "craco build",
+    "dev:web": "GENERATE_SOURCEMAP=false craco start",
+    "build:web": "GENERATE_SOURCEMAP=false craco build",
     "test:web": "craco test --env=jsdom",
+    "start:web": "serve -s build",
     "eject:web": "react-scripts eject",
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn"
@@ -35,6 +36,7 @@
     "react-native-vector-icons": "^9.0.0",
     "react-native-web": "^0.17.5",
     "react-query": "^3.34.12",
+    "serve": "^13.0.2",
     "tailwind-rn": "^4.0.1"
   },
   "devDependencies": {
