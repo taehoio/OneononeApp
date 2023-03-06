@@ -1,3 +1,7 @@
+# Cloudflare
+#
+.wrangler/
+
 # OSX
 #
 .DS_Store

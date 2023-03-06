@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install --frozen-lockfile
@@ -6,7 +6,7 @@ RUN yarn run build:tailwind
 RUN yarn run build:web
 
 
-FROM node:16-alpine AS runner
+FROM node:18-alpine AS runner
 WORKDIR /app
 
 COPY --from=builder /app/build ./build
