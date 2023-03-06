@@ -14,7 +14,12 @@
     "^.+\\.(ts|tsx)$": [
       "ts-jest",
       {
-        "isolatedModules": true
+        "isolatedModules": true,
+        "diagnostics": {
+          "ignoreCodes": [
+            151001
+          ]
+        }
       }
     ]
   },

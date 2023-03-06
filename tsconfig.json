@@ -61,8 +61,4 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "types": [
-    "@cloudflare/workers-types",
-    "@types/jest"
-  ],
 }
