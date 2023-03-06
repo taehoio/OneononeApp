@@ -38,7 +38,9 @@ describe('/categories/[categoryId]/questions', () => {
       } as unknown as EventContext<Env, any, Record<string, unknown>>);
 
       expect(resp.status).toBe(400);
-      expect(await resp.json()).toEqual({msg: 'categoryId is not a number'});
+      expect(await resp.json()).toEqual({
+        message: 'categoryId is not a number',
+      });
     });
   });
 });

@@ -1,12 +1,11 @@
 # .QuestionsApi
 
-All URIs are relative to *https://api.taeho.io/oneonone/v1*
+All URIs are relative to *https://1on1.taeho.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getCategoryRandomQuestion**](QuestionsApi.md#getCategoryRandomQuestion) | **GET** /categories/{category_id}/questions/random | Get a random question for a category
 [**getQuestion**](QuestionsApi.md#getQuestion) | **GET** /questions/{question_id} | Get a question
-[**getQuestions**](QuestionsApi.md#getQuestions) | **GET** /questions | Get all questions
 [**getRandomQuestion**](QuestionsApi.md#getRandomQuestion) | **GET** /questions/random | Get a random question
 
 
@@ -61,6 +60,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
+**400** | Invalid category ID supplied |  -  |
+**404** | Question not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
@@ -116,55 +117,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
-**500** | Internal server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **getQuestions**
-> GetCategoryQuestions200Response getQuestions()
-
-Get all questions.
-
-### Example
-
-
-```typescript
-import {  } from '';
-import * as fs from 'fs';
-
-const configuration = .createConfiguration();
-const apiInstance = new .QuestionsApi(configuration);
-
-let body:any = {};
-
-apiInstance.getQuestions(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-
-### Return type
-
-**GetCategoryQuestions200Response**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | successful operation |  -  |
+**400** | Invalid question ID supplied |  -  |
+**404** | Question not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
@@ -214,6 +168,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
+**404** | Question not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)

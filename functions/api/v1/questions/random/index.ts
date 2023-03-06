@@ -9,13 +9,16 @@ export const onRequestGet: PagesFunction<Env> = async context => {
   const db = context.env.TAEHOIO_DB;
   const questionId = Number(context.params.questionId);
   if (isNaN(questionId)) {
-    return Response.json({msg: 'questionId is not a number'}, {status: 400});
+    return Response.json(
+      {message: 'questionId is not a number'},
+      {status: 400},
+    );
   }
 
   const questions = await new QuestionRepository(db).list();
 
   if (!questions.length) {
-    return Response.json({msg: 'question not found'}, {status: 404});
+    return Response.json({message: 'question not found'}, {status: 404});
   }
 
   const randomIndex = Math.floor(Math.random() * questions.length);

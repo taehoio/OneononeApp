@@ -39,7 +39,9 @@ describe('/categories/[categoryId]/questions/[questionId]', () => {
       } as unknown as EventContext<Env, any, Record<string, unknown>>);
 
       expect(resp.status).toBe(400);
-      expect(await resp.json()).toEqual({msg: 'questionId is not a number'});
+      expect(await resp.json()).toEqual({
+        message: 'questionId is not a number',
+      });
     });
 
     it('should return 404 response', async () => {
@@ -55,7 +57,7 @@ describe('/categories/[categoryId]/questions/[questionId]', () => {
       } as unknown as EventContext<Env, any, Record<string, unknown>>);
 
       expect(resp.status).toBe(404);
-      expect(await resp.json()).toEqual({msg: 'question not found'});
+      expect(await resp.json()).toEqual({message: 'question not found'});
     });
   });
 });

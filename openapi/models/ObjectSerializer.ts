@@ -1,13 +1,17 @@
 export * from '../models/Category';
+export * from '../models/GetApiStatus200Response';
 export * from '../models/GetCategories200Response';
 export * from '../models/GetCategoryQuestions200Response';
 export * from '../models/GetCategoryRandomQuestion200Response';
+export * from '../models/GetCategoryRandomQuestion400Response';
 export * from '../models/Question';
 
 import { Category } from '../models/Category';
+import { GetApiStatus200Response } from '../models/GetApiStatus200Response';
 import { GetCategories200Response } from '../models/GetCategories200Response';
 import { GetCategoryQuestions200Response } from '../models/GetCategoryQuestions200Response';
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
+import { GetCategoryRandomQuestion400Response } from '../models/GetCategoryRandomQuestion400Response';
 import { Question } from '../models/Question';
 
 /* tslint:disable:no-unused-variable */
@@ -34,9 +38,11 @@ let enumsMap: Set<string> = new Set<string>([
 
 let typeMap: {[index: string]: any} = {
     "Category": Category,
+    "GetApiStatus200Response": GetApiStatus200Response,
     "GetCategories200Response": GetCategories200Response,
     "GetCategoryQuestions200Response": GetCategoryQuestions200Response,
     "GetCategoryRandomQuestion200Response": GetCategoryRandomQuestion200Response,
+    "GetCategoryRandomQuestion400Response": GetCategoryRandomQuestion400Response,
     "Question": Question,
 }
 

@@ -1,9 +1,9 @@
 openapi: 3.0.2
 
 servers:
-  - url: 'https://api.taeho.io/oneonone/v1'
+  - url: 'https://1on1.taeho.io/api/v1'
     description: Production server
-  - url: 'http://localhost:3000/1on1/v1'
+  - url: 'http://localhost:3000/api/v1'
     description: Local server
 
 info:
@@ -16,22 +16,29 @@ info:
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 
 tags:
-  - name: health
-    description: Health check
   - name: categories
     description: Operations about categories
   - name: questions
     description: Operations about questions
 
 paths:
-  /health:
-    get:
-      tags:
-        - health
-      summary: Health check
+  /:
+    head:
+      summary: Get API status
       description: >-
-        Health check endpoint. Returns 200 if the service is up and running.
-      operationId: health
+        Get API status.
+      operationId: headApiStatus
+      responses:
+        '200':
+          description: successful operation
+        '500':
+          description: Internal server error
+
+    get:
+      summary: Get API status
+      description: >-
+        Get API status.
+      operationId: getApiStatus
       responses:
         '200':
           description: successful operation
@@ -39,6 +46,11 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Internal server error
 
   /categories:
     get:
@@ -121,29 +133,24 @@ paths:
                 properties:
                   question:
                     $ref: '#/components/schemas/Question'
-        '500':
-          description: Internal server error
-
-  /questions:
-    get:
-      tags:
-        - questions
-      summary: Get all questions
-      description: >-
-        Get all questions.
-      operationId: getQuestions
-      responses:
-        '200':
-          description: successful operation
+        '400':
+          description: Invalid category ID supplied
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  questions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Question'
+                  message:
+                    type: string
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error
 
@@ -173,6 +180,24 @@ paths:
                 properties:
                   question:
                     $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid question ID supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error
 
@@ -194,6 +219,15 @@ paths:
                 properties:
                   question:
                     $ref: '#/components/schemas/Question'
+        '404':
+          description: Question not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error
 

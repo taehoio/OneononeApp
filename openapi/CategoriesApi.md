@@ -1,6 +1,6 @@
 # .CategoriesApi
 
-All URIs are relative to *https://api.taeho.io/oneonone/v1*
+All URIs are relative to *https://1on1.taeho.io/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -164,6 +164,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | successful operation |  -  |
+**400** | Invalid category ID supplied |  -  |
+**404** | Question not found |  -  |
 **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)

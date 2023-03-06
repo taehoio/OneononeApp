@@ -50,7 +50,7 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("https://api.taeho.io/oneonone/v1", {  })
-export const server2 = new ServerConfiguration<{  }>("http://localhost:3000/1on1/v1", {  })
+export const server1 = new ServerConfiguration<{  }>("https://1on1.taeho.io/api/v1", {  })
+export const server2 = new ServerConfiguration<{  }>("http://localhost:3000/api/v1", {  })
 
 export const servers = [server1, server2];

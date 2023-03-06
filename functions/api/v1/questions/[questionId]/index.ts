@@ -9,7 +9,10 @@ export const onRequestGet: PagesFunction<Env> = async context => {
   const db = context.env.TAEHOIO_DB;
   const questionId = Number(context.params.questionId);
   if (isNaN(questionId)) {
-    return Response.json({msg: 'questionId is not a number'}, {status: 400});
+    return Response.json(
+      {message: 'questionId is not a number'},
+      {status: 400},
+    );
   }
 
   const question = await new QuestionRepository(db).get(questionId);

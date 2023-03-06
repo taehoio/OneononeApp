@@ -2,9 +2,11 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { Category } from '../models/Category';
+import { GetApiStatus200Response } from '../models/GetApiStatus200Response';
 import { GetCategories200Response } from '../models/GetCategories200Response';
 import { GetCategoryQuestions200Response } from '../models/GetCategoryQuestions200Response';
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
+import { GetCategoryRandomQuestion400Response } from '../models/GetCategoryRandomQuestion400Response';
 import { Question } from '../models/Question';
 
 import { ObservableCategoriesApi } from "./ObservableAPI";
@@ -67,26 +69,38 @@ export class ObjectCategoriesApi {
 
 }
 
-import { ObservableHealthApi } from "./ObservableAPI";
-import { HealthApiRequestFactory, HealthApiResponseProcessor} from "../apis/HealthApi";
+import { ObservableDefaultApi } from "./ObservableAPI";
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 
-export interface HealthApiHealthRequest {
+export interface DefaultApiGetApiStatusRequest {
 }
 
-export class ObjectHealthApi {
-    private api: ObservableHealthApi
+export interface DefaultApiHeadApiStatusRequest {
+}
 
-    public constructor(configuration: Configuration, requestFactory?: HealthApiRequestFactory, responseProcessor?: HealthApiResponseProcessor) {
-        this.api = new ObservableHealthApi(configuration, requestFactory, responseProcessor);
+export class ObjectDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Health check endpoint. Returns 200 if the service is up and running.
-     * Health check
+     * Get API status.
+     * Get API status
      * @param param the request object
      */
-    public health(param: HealthApiHealthRequest = {}, options?: Configuration): Promise<any> {
-        return this.api.health( options).toPromise();
+    public getApiStatus(param: DefaultApiGetApiStatusRequest = {}, options?: Configuration): Promise<GetApiStatus200Response> {
+        return this.api.getApiStatus( options).toPromise();
+    }
+
+    /**
+     * Get API status.
+     * Get API status
+     * @param param the request object
+     */
+    public headApiStatus(param: DefaultApiHeadApiStatusRequest = {}, options?: Configuration): Promise<void> {
+        return this.api.headApiStatus( options).toPromise();
     }
 
 }
@@ -110,9 +124,6 @@ export interface QuestionsApiGetQuestionRequest {
      * @memberof QuestionsApigetQuestion
      */
     questionId: number
-}
-
-export interface QuestionsApiGetQuestionsRequest {
 }
 
 export interface QuestionsApiGetRandomQuestionRequest {
@@ -141,15 +152,6 @@ export class ObjectQuestionsApi {
      */
     public getQuestion(param: QuestionsApiGetQuestionRequest, options?: Configuration): Promise<GetCategoryRandomQuestion200Response> {
         return this.api.getQuestion(param.questionId,  options).toPromise();
-    }
-
-    /**
-     * Get all questions.
-     * Get all questions
-     * @param param the request object
-     */
-    public getQuestions(param: QuestionsApiGetQuestionsRequest = {}, options?: Configuration): Promise<GetCategoryQuestions200Response> {
-        return this.api.getQuestions( options).toPromise();
     }
 
     /**
