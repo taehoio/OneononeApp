@@ -2,9 +2,11 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { Category } from '../models/Category';
+import { GetApiStatus200Response } from '../models/GetApiStatus200Response';
 import { GetCategories200Response } from '../models/GetCategories200Response';
 import { GetCategoryQuestions200Response } from '../models/GetCategoryQuestions200Response';
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
+import { GetCategoryRandomQuestion400Response } from '../models/GetCategoryRandomQuestion400Response';
 import { Question } from '../models/Question';
 import { ObservableCategoriesApi } from './ObservableAPI';
 
@@ -54,26 +56,35 @@ export class PromiseCategoriesApi {
 
 
 
-import { ObservableHealthApi } from './ObservableAPI';
+import { ObservableDefaultApi } from './ObservableAPI';
 
-import { HealthApiRequestFactory, HealthApiResponseProcessor} from "../apis/HealthApi";
-export class PromiseHealthApi {
-    private api: ObservableHealthApi
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class PromiseDefaultApi {
+    private api: ObservableDefaultApi
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: HealthApiRequestFactory,
-        responseProcessor?: HealthApiResponseProcessor
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
     ) {
-        this.api = new ObservableHealthApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Health check endpoint. Returns 200 if the service is up and running.
-     * Health check
+     * Get API status.
+     * Get API status
      */
-    public health(_options?: Configuration): Promise<any> {
-        const result = this.api.health(_options);
+    public getApiStatus(_options?: Configuration): Promise<GetApiStatus200Response> {
+        const result = this.api.getApiStatus(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get API status.
+     * Get API status
+     */
+    public headApiStatus(_options?: Configuration): Promise<void> {
+        const result = this.api.headApiStatus(_options);
         return result.toPromise();
     }
 

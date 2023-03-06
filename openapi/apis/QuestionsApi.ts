@@ -9,6 +9,7 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
+import { GetCategoryRandomQuestion400Response } from '../models/GetCategoryRandomQuestion400Response';
 
 /**
  * no description
@@ -123,6 +124,20 @@ export class QuestionsApiResponseProcessor {
             ) as GetCategoryRandomQuestion200Response;
             return body;
         }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: GetCategoryRandomQuestion400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryRandomQuestion400Response", ""
+            ) as GetCategoryRandomQuestion400Response;
+            throw new ApiException<GetCategoryRandomQuestion400Response>(response.httpStatusCode, "Invalid category ID supplied", body, response.headers);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: GetCategoryRandomQuestion400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryRandomQuestion400Response", ""
+            ) as GetCategoryRandomQuestion400Response;
+            throw new ApiException<GetCategoryRandomQuestion400Response>(response.httpStatusCode, "Question not found", body, response.headers);
+        }
         if (isCodeInRange("500", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Internal server error", undefined, response.headers);
         }
@@ -155,6 +170,20 @@ export class QuestionsApiResponseProcessor {
             ) as GetCategoryRandomQuestion200Response;
             return body;
         }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: GetCategoryRandomQuestion400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryRandomQuestion400Response", ""
+            ) as GetCategoryRandomQuestion400Response;
+            throw new ApiException<GetCategoryRandomQuestion400Response>(response.httpStatusCode, "Invalid question ID supplied", body, response.headers);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: GetCategoryRandomQuestion400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryRandomQuestion400Response", ""
+            ) as GetCategoryRandomQuestion400Response;
+            throw new ApiException<GetCategoryRandomQuestion400Response>(response.httpStatusCode, "Question not found", body, response.headers);
+        }
         if (isCodeInRange("500", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Internal server error", undefined, response.headers);
         }
@@ -186,6 +215,13 @@ export class QuestionsApiResponseProcessor {
                 "GetCategoryRandomQuestion200Response", ""
             ) as GetCategoryRandomQuestion200Response;
             return body;
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: GetCategoryRandomQuestion400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryRandomQuestion400Response", ""
+            ) as GetCategoryRandomQuestion400Response;
+            throw new ApiException<GetCategoryRandomQuestion400Response>(response.httpStatusCode, "Question not found", body, response.headers);
         }
         if (isCodeInRange("500", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Internal server error", undefined, response.headers);

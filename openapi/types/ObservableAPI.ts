@@ -3,9 +3,11 @@ import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Category } from '../models/Category';
+import { GetApiStatus200Response } from '../models/GetApiStatus200Response';
 import { GetCategories200Response } from '../models/GetCategories200Response';
 import { GetCategoryQuestions200Response } from '../models/GetCategoryQuestions200Response';
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
+import { GetCategoryRandomQuestion400Response } from '../models/GetCategoryRandomQuestion400Response';
 import { Question } from '../models/Question';
 
 import { CategoriesApiRequestFactory, CategoriesApiResponseProcessor} from "../apis/CategoriesApi";
@@ -97,28 +99,28 @@ export class ObservableCategoriesApi {
 
 }
 
-import { HealthApiRequestFactory, HealthApiResponseProcessor} from "../apis/HealthApi";
-export class ObservableHealthApi {
-    private requestFactory: HealthApiRequestFactory;
-    private responseProcessor: HealthApiResponseProcessor;
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class ObservableDefaultApi {
+    private requestFactory: DefaultApiRequestFactory;
+    private responseProcessor: DefaultApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: HealthApiRequestFactory,
-        responseProcessor?: HealthApiResponseProcessor
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new HealthApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new HealthApiResponseProcessor();
+        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
     }
 
     /**
-     * Health check endpoint. Returns 200 if the service is up and running.
-     * Health check
+     * Get API status.
+     * Get API status
      */
-    public health(_options?: Configuration): Observable<any> {
-        const requestContextPromise = this.requestFactory.health(_options);
+    public getApiStatus(_options?: Configuration): Observable<GetApiStatus200Response> {
+        const requestContextPromise = this.requestFactory.getApiStatus(_options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -132,7 +134,30 @@ export class ObservableHealthApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.health(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getApiStatus(rsp)));
+            }));
+    }
+
+    /**
+     * Get API status.
+     * Get API status
+     */
+    public headApiStatus(_options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.headApiStatus(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.headApiStatus(rsp)));
             }));
     }
 

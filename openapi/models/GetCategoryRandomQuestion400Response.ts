@@ -12,28 +12,21 @@
 
 import { HttpFile } from '../http/http';
 
-export class Question {
-    'id': number;
-    'question': string;
+export class GetCategoryRandomQuestion400Response {
+    'message'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "number",
-            "format": "int64"
-        },
-        {
-            "name": "question",
-            "baseName": "question",
+            "name": "message",
+            "baseName": "message",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Question.attributeTypeMap;
+        return GetCategoryRandomQuestion400Response.attributeTypeMap;
     }
 
     public constructor() {

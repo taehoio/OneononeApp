@@ -1,30 +1,71 @@
-import {handlerRequest} from './index';
+import {CategoryRepository, Env, onRequestGet} from '.';
 
-describe('Worker', () => {
-  it('should return 200 response', async () => {
-    const db: D1Database = {
-      prepare: jest.fn().mockReturnValue({
-        all: jest.fn().mockReturnValue({
-          results: [
-            {id: 1, name: 'foo'},
-            {id: 2, name: 'bar'},
-            {id: 3, name: 'baz'},
-            {id: 4, name: 'qux'},
-            {id: 5, name: 'quux'},
-            {id: 6, name: 'corge'},
-            {id: 7, name: 'grault'},
-          ],
+describe('/categories', () => {
+  beforeEach(() => {});
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  describe('onRequestGet', () => {
+    it('should return 200 response', async () => {
+      const categories = [
+        {
+          id: 0,
+          name: 'About Manager',
+        },
+        {
+          id: 1,
+          name: 'Career development',
+        },
+        {
+          id: 2,
+          name: 'Conversation starters',
+        },
+      ];
+
+      jest
+        .spyOn(CategoryRepository.prototype, 'list')
+        .mockResolvedValueOnce(categories);
+
+      const resp = await onRequestGet({
+        env: {TAEHOIO_DB: {}},
+      } as unknown as EventContext<Env, any, Record<string, unknown>>);
+
+      expect(resp.status).toBe(200);
+      const body = await resp.json();
+      expect(body['categories']).toHaveLength(3);
+    });
+  });
+});
+
+describe('CategoryRepository', () => {
+  describe('list', () => {
+    it('should return categories', async () => {
+      const db: D1Database = {
+        prepare: jest.fn().mockReturnValue({
+          all: jest.fn().mockReturnValue({
+            results: [
+              {
+                id: 0,
+                name: 'About Manager',
+              },
+              {
+                id: 1,
+                name: 'Career development',
+              },
+              {
+                id: 2,
+                name: 'Conversation starters',
+              },
+            ],
+          }),
         }),
-      }),
-      batch: jest.fn(),
-      dump: jest.fn(),
-      exec: jest.fn(),
-    };
+      } as unknown as D1Database;
 
-    const resp = await handlerRequest(db);
-
-    expect(resp.status).toBe(200);
-    const body = await resp.json();
-    expect(body['categories']).toHaveLength(7);
+      const categoryRepository = new CategoryRepository(db);
+      const categories = await categoryRepository.list();
+      expect(categories).toHaveLength(3);
+    });
   });
 });
