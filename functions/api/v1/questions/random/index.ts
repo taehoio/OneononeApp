@@ -7,13 +7,6 @@ export interface Env {
 
 export const onRequestGet: PagesFunction<Env> = async context => {
   const db = context.env.TAEHOIO_DB;
-  const questionId = Number(context.params.questionId);
-  if (isNaN(questionId)) {
-    return Response.json(
-      {message: 'questionId is not a number'},
-      {status: 400},
-    );
-  }
 
   const questions = await new QuestionRepository(db).list();
 

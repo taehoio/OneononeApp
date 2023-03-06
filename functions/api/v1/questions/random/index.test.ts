@@ -32,18 +32,6 @@ describe('/categories/[categoryId]/questions/[questionId]', () => {
       expect(body).toHaveProperty('question');
     });
 
-    it('should return 400 response', async () => {
-      const resp = await onRequestGet({
-        params: {questionId: 'a'},
-        env: {TAEHOIO_DB: {}},
-      } as unknown as EventContext<Env, any, Record<string, unknown>>);
-
-      expect(resp.status).toBe(400);
-      expect(await resp.json()).toEqual({
-        message: 'questionId is not a number',
-      });
-    });
-
     it('should return 404 response', async () => {
       const questions = [];
 
