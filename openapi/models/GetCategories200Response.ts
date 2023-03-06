@@ -10,10 +10,11 @@
  * Do not edit the class manually.
  */
 
+import { Category } from '../models/Category';
 import { HttpFile } from '../http/http';
 
 export class GetCategories200Response {
-    'categories'?: any;
+    'categories'?: Array<Category>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -21,7 +22,7 @@ export class GetCategories200Response {
         {
             "name": "categories",
             "baseName": "categories",
-            "type": "any",
+            "type": "Array<Category>",
             "format": ""
         }    ];
 

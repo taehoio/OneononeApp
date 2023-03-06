@@ -46,7 +46,7 @@ export class CategoriesApiRequestFactory extends BaseAPIRequestFactory {
      * Get all questions for a category
      * @param categoryId ID of category to return
      */
-    public async getCategoryQuestions(categoryId: any, _options?: Configuration): Promise<RequestContext> {
+    public async getCategoryQuestions(categoryId: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'categoryId' is not null or undefined
@@ -78,7 +78,7 @@ export class CategoriesApiRequestFactory extends BaseAPIRequestFactory {
      * Get a random question for a category
      * @param categoryId ID of category to return
      */
-    public async getCategoryRandomQuestion(categoryId: any, _options?: Configuration): Promise<RequestContext> {
+    public async getCategoryRandomQuestion(categoryId: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'categoryId' is not null or undefined

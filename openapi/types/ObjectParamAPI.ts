@@ -16,19 +16,19 @@ export interface CategoriesApiGetCategoriesRequest {
 export interface CategoriesApiGetCategoryQuestionsRequest {
     /**
      * ID of category to return
-     * @type any
+     * @type number
      * @memberof CategoriesApigetCategoryQuestions
      */
-    categoryId: any
+    categoryId: number
 }
 
 export interface CategoriesApiGetCategoryRandomQuestionRequest {
     /**
      * ID of category to return
-     * @type any
+     * @type number
      * @memberof CategoriesApigetCategoryRandomQuestion
      */
-    categoryId: any
+    categoryId: number
 }
 
 export class ObjectCategoriesApi {
@@ -97,19 +97,19 @@ import { QuestionsApiRequestFactory, QuestionsApiResponseProcessor} from "../api
 export interface QuestionsApiGetCategoryRandomQuestionRequest {
     /**
      * ID of category to return
-     * @type any
+     * @type number
      * @memberof QuestionsApigetCategoryRandomQuestion
      */
-    categoryId: any
+    categoryId: number
 }
 
 export interface QuestionsApiGetQuestionRequest {
     /**
      * ID of question to return
-     * @type any
+     * @type number
      * @memberof QuestionsApigetQuestion
      */
-    questionId: any
+    questionId: number
 }
 
 export interface QuestionsApiGetRandomQuestionRequest {

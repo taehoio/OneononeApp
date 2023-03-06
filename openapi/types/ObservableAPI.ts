@@ -52,7 +52,7 @@ export class ObservableCategoriesApi {
      * Get all questions for a category
      * @param categoryId ID of category to return
      */
-    public getCategoryQuestions(categoryId: any, _options?: Configuration): Observable<GetCategoryQuestions200Response> {
+    public getCategoryQuestions(categoryId: number, _options?: Configuration): Observable<GetCategoryQuestions200Response> {
         const requestContextPromise = this.requestFactory.getCategoryQuestions(categoryId, _options);
 
         // build promise chain
@@ -76,7 +76,7 @@ export class ObservableCategoriesApi {
      * Get a random question for a category
      * @param categoryId ID of category to return
      */
-    public getCategoryRandomQuestion(categoryId: any, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
+    public getCategoryRandomQuestion(categoryId: number, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
         const requestContextPromise = this.requestFactory.getCategoryRandomQuestion(categoryId, _options);
 
         // build promise chain
@@ -159,7 +159,7 @@ export class ObservableQuestionsApi {
      * Get a random question for a category
      * @param categoryId ID of category to return
      */
-    public getCategoryRandomQuestion(categoryId: any, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
+    public getCategoryRandomQuestion(categoryId: number, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
         const requestContextPromise = this.requestFactory.getCategoryRandomQuestion(categoryId, _options);
 
         // build promise chain
@@ -183,7 +183,7 @@ export class ObservableQuestionsApi {
      * Get a question
      * @param questionId ID of question to return
      */
-    public getQuestion(questionId: any, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
+    public getQuestion(questionId: number, _options?: Configuration): Observable<GetCategoryRandomQuestion200Response> {
         const requestContextPromise = this.requestFactory.getQuestion(questionId, _options);
 
         // build promise chain

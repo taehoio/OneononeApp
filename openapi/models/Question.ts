@@ -13,8 +13,8 @@
 import { HttpFile } from '../http/http';
 
 export class Question {
-    'id'?: any;
-    'question'?: any;
+    'id'?: number;
+    'question'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,13 +22,13 @@ export class Question {
         {
             "name": "id",
             "baseName": "id",
-            "type": "any",
+            "type": "number",
             "format": "int64"
         },
         {
             "name": "question",
             "baseName": "question",
-            "type": "any",
+            "type": "string",
             "format": ""
         }    ];
 

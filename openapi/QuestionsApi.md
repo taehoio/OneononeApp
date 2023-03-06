@@ -25,8 +25,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .QuestionsApi(configuration);
 
 let body:.QuestionsApiGetCategoryRandomQuestionRequest = {
-  // any | ID of category to return
-  categoryId: null,
+  // number | ID of category to return
+  categoryId: 1,
 };
 
 apiInstance.getCategoryRandomQuestion(body).then((data:any) => {
@@ -39,7 +39,7 @@ apiInstance.getCategoryRandomQuestion(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **categoryId** | **any** | ID of category to return | defaults to undefined
+ **categoryId** | [**number**] | ID of category to return | defaults to undefined
 
 
 ### Return type
@@ -80,8 +80,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .QuestionsApi(configuration);
 
 let body:.QuestionsApiGetQuestionRequest = {
-  // any | ID of question to return
-  questionId: null,
+  // number | ID of question to return
+  questionId: 1,
 };
 
 apiInstance.getQuestion(body).then((data:any) => {
@@ -94,7 +94,7 @@ apiInstance.getQuestion(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **questionId** | **any** | ID of question to return | defaults to undefined
+ **questionId** | [**number**] | ID of question to return | defaults to undefined
 
 
 ### Return type
