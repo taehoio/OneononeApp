@@ -4,7 +4,7 @@ export interface Env {
 
 export const onRequest: PagesFunction<Env> = async context => {
   const ps = context.env.TAEHOIO_DB.prepare('SELECT * FROM category');
-  const data = await ps.all();
+  const {results} = await ps.all();
 
-  return Response.json(data);
+  return Response.json({categories: results});
 };
