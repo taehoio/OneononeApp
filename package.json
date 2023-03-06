@@ -42,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@cloudflare/workers-types": "^4.20230228.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.4",
@@ -49,6 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "babel-jest": "^26.6.3",
+    "better-sqlite3": "8.0.1",
     "concurrently": "^7.0.0",
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
