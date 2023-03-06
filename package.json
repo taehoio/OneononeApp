@@ -17,7 +17,8 @@
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:functions": "wrangler pages dev ./ --persist",
-    "test:functions": "jest -c functions/jest.config.json ./functions"
+    "test:functions": "jest -c functions/jest.config.json ./functions",
+    "generate:openapi": "rm -rf openapi; openapi-generator-cli generate -g typescript -i openapi.yml -o ./openapi"
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
@@ -45,6 +46,7 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@cloudflare/workers-types": "^4.20230228.0",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.4",

@@ -7,5 +7,4 @@ module.exports = {
     '\\.(css|less)$': '<rootDir>/__mocks__/fileMock.js',
   },
   setupFiles: ['<rootDir>/jest.setup.js'],
-  modulePathIgnorePatterns: ['<rootDir>/functions/'],
 };

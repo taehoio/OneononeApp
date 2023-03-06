@@ -26,5 +26,9 @@
   "transformIgnorePatterns": [
     "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
   ],
-  "testTimeout": 120000
+  "testTimeout": 120000,
+  "moduleNameMapper": {
+    "^@openapi$": "<rootDir>/openapi",
+    "^@openapi/(.*)$": "<rootDir>/openapi/$1"
+  }
 }

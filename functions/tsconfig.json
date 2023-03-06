@@ -10,5 +10,10 @@
       "@cloudflare/workers-types",
       "@types/jest"
     ],
+    "paths": {
+      "@openapi": [
+        "../openapi"
+      ],
+    },
   },
 }

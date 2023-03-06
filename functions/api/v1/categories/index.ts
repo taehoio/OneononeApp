@@ -1,3 +1,5 @@
+import {Category} from '@openapi';
+
 export interface Env {
   TAEHOIO_DB: D1Database;
 }
@@ -11,5 +13,9 @@ export async function handlerRequest(db: D1Database): Promise<Response> {
   const ps = db.prepare('SELECT * FROM category');
   const {results} = await ps.all();
 
-  return Response.json({categories: results});
+  const categories: Category[] = results.map((category: Category) => {
+    return {id: category.id, name: category.name};
+  });
+
+  return Response.json({categories});
 }
