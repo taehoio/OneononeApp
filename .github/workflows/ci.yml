@@ -70,6 +70,9 @@ jobs:
       - name: Test
         run: yarn test
 
+      - name: Test functions
+        run: yarn test:functions
+
   build:
     name: Build and Push
     runs-on: ubuntu-20.04

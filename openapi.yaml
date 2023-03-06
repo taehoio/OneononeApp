@@ -124,6 +124,29 @@ paths:
         '500':
           description: Internal server error
 
+  /questions:
+    get:
+      tags:
+        - questions
+      summary: Get all questions
+      description: >-
+        Get all questions.
+      operationId: getQuestions
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  questions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Question'
+        '500':
+          description: Internal server error
+
   /questions/{question_id}:
     get:
       tags:
@@ -184,6 +207,9 @@ components:
           format: int64
         name:
           type: string
+      required:
+        - id
+        - name
     Question:
       type: object
       properties:
@@ -192,4 +218,6 @@ components:
           format: int64
         question:
           type: string
-    
+      required:
+        - id
+        - question

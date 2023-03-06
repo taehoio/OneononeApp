@@ -112,6 +112,9 @@ export interface QuestionsApiGetQuestionRequest {
     questionId: number
 }
 
+export interface QuestionsApiGetQuestionsRequest {
+}
+
 export interface QuestionsApiGetRandomQuestionRequest {
 }
 
@@ -138,6 +141,15 @@ export class ObjectQuestionsApi {
      */
     public getQuestion(param: QuestionsApiGetQuestionRequest, options?: Configuration): Promise<GetCategoryRandomQuestion200Response> {
         return this.api.getQuestion(param.questionId,  options).toPromise();
+    }
+
+    /**
+     * Get all questions.
+     * Get all questions
+     * @param param the request object
+     */
+    public getQuestions(param: QuestionsApiGetQuestionsRequest = {}, options?: Configuration): Promise<GetCategoryQuestions200Response> {
+        return this.api.getQuestions( options).toPromise();
     }
 
     /**

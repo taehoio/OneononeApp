@@ -18,7 +18,7 @@
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:functions": "wrangler pages dev ./ --persist",
     "test:functions": "jest -c functions/jest.config.json ./functions",
-    "generate:openapi": "rm -rf openapi; openapi-generator-cli generate -g typescript -i openapi.yml -o ./openapi"
+    "generate:openapi": "rm -rf openapi; openapi-generator-cli generate -g typescript -i openapi.yaml -o ./openapi"
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",

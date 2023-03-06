@@ -117,6 +117,15 @@ export class PromiseQuestionsApi {
     }
 
     /**
+     * Get all questions.
+     * Get all questions
+     */
+    public getQuestions(_options?: Configuration): Promise<GetCategoryQuestions200Response> {
+        const result = this.api.getQuestions(_options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a random question.
      * Get a random question
      */

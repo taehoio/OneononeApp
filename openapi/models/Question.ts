@@ -13,8 +13,8 @@
 import { HttpFile } from '../http/http';
 
 export class Question {
-    'id'?: number;
-    'question'?: string;
+    'id': number;
+    'question': string;
 
     static readonly discriminator: string | undefined = undefined;
 

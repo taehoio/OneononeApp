@@ -8,6 +8,7 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { GetCategoryQuestions200Response } from '../models/GetCategoryQuestions200Response';
 import { GetCategoryRandomQuestion200Response } from '../models/GetCategoryRandomQuestion200Response';
 
 /**
@@ -64,6 +65,30 @@ export class QuestionsApiRequestFactory extends BaseAPIRequestFactory {
         // Path Params
         const localVarPath = '/questions/{question_id}'
             .replace('{' + 'question_id' + '}', encodeURIComponent(String(questionId)));
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Get all questions.
+     * Get all questions
+     */
+    public async getQuestions(_options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/questions';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -165,6 +190,38 @@ export class QuestionsApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetCategoryRandomQuestion200Response", ""
             ) as GetCategoryRandomQuestion200Response;
+            return body;
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getQuestions
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async getQuestions(response: ResponseContext): Promise<GetCategoryQuestions200Response > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: GetCategoryQuestions200Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryQuestions200Response", ""
+            ) as GetCategoryQuestions200Response;
+            return body;
+        }
+        if (isCodeInRange("500", response.httpStatusCode)) {
+            throw new ApiException<undefined>(response.httpStatusCode, "Internal server error", undefined, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: GetCategoryQuestions200Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "GetCategoryQuestions200Response", ""
+            ) as GetCategoryQuestions200Response;
             return body;
         }
 
