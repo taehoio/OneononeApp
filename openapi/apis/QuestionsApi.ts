@@ -20,7 +20,7 @@ export class QuestionsApiRequestFactory extends BaseAPIRequestFactory {
      * Get a random question for a category
      * @param categoryId ID of category to return
      */
-    public async getCategoryRandomQuestion(categoryId: any, _options?: Configuration): Promise<RequestContext> {
+    public async getCategoryRandomQuestion(categoryId: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'categoryId' is not null or undefined
@@ -52,7 +52,7 @@ export class QuestionsApiRequestFactory extends BaseAPIRequestFactory {
      * Get a question
      * @param questionId ID of question to return
      */
-    public async getQuestion(questionId: any, _options?: Configuration): Promise<RequestContext> {
+    public async getQuestion(questionId: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'questionId' is not null or undefined

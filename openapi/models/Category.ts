@@ -13,8 +13,8 @@
 import { HttpFile } from '../http/http';
 
 export class Category {
-    'id'?: any;
-    'name'?: any;
+    'id'?: number;
+    'name'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,13 +22,13 @@ export class Category {
         {
             "name": "id",
             "baseName": "id",
-            "type": "any",
+            "type": "number",
             "format": "int64"
         },
         {
             "name": "name",
             "baseName": "name",
-            "type": "any",
+            "type": "string",
             "format": ""
         }    ];
 
