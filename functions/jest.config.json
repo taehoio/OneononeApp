@@ -1,0 +1,25 @@
+{
+  "preset": "ts-jest",
+  "setupFiles": [
+    "dotenv/config"
+  ],
+  "testMatch": [
+    "**/__tests__/**/*.+(ts|tsx|js)",
+    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+  ],
+  "testPathIgnorePatterns": [
+    "/tests/"
+  ],
+  "transform": {
+    "^.+\\.(ts|tsx)$": [
+      "ts-jest",
+      {
+        "isolatedModules": true
+      }
+    ]
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
+  ],
+  "testTimeout": 120000
+}
