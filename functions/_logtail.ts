@@ -46,8 +46,6 @@ export default class Logtail {
       level: 'info',
       environment,
       metadata: {
-        level: 'info',
-        environment,
         cloudflare_worker: {
           worker_id: this.workerId,
           worker_start_time: this.workerStartTime,
