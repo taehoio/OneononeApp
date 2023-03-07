@@ -29,7 +29,8 @@ export default class Logtail {
     context: EventContext<unknown, any, unknown>,
   ): Promise<Response> => {
     const sourceToken = context.env?.['LOGTAIL_SOURCE_TOKEN'];
-    if (!sourceToken) {
+    const environment = context.env?.['ENVIRONMENT'];
+    if (!sourceToken || !environment) {
       return context.next();
     }
 
@@ -44,6 +45,7 @@ export default class Logtail {
       dt: new Date().toISOString(),
       metadata: {
         cloudflare_worker: {
+          environment: environment,
           worker_id: this.workerId,
           worker_start_time: this.workerStartTime,
         },
