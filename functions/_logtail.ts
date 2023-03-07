@@ -43,9 +43,9 @@ export default class Logtail {
 
     const log = JSON.stringify({
       dt: new Date().toISOString(),
+      level: 'info',
+      environment,
       metadata: {
-        level: 'info',
-        environment,
         cloudflare_worker: {
           worker_id: this.workerId,
           worker_start_time: this.workerStartTime,
