@@ -1,6 +1,7 @@
 # Cloudflare
 #
 .wrangler/
+.dev.vars
 
 # OSX
 #
