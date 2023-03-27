@@ -6,7 +6,7 @@ const honeycomb = (
   context: EventContext<
     {HONEYCOMB_API_KEY: string; HONEYCOMB_DATASET: string},
     any,
-    unknown
+    Record<string, unknown>
   >,
 ) => {
   return honeycombPlugin({
