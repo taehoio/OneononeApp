@@ -21,6 +21,7 @@
     "generate:openapi": "rm -rf openapi; openapi-generator-cli generate -g typescript -i openapi.yaml -o ./openapi"
   },
   "dependencies": {
+    "@cloudflare/pages-plugin-honeycomb": "^1.0.2",
     "@craco/craco": "^6.4.3",
     "@react-native-async-storage/async-storage": "^1.15.17",
     "@react-native-firebase/analytics": "^14.3.0",
