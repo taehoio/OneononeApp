@@ -1555,6 +1555,28 @@
   dependencies:
     mime "^3.0.0"
 
+"@cloudflare/pages-plugin-honeycomb@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@cloudflare/pages-plugin-honeycomb/-/pages-plugin-honeycomb-1.0.2.tgz#d8a3c7fcec7ff8b25297f243a4e3264499b129c4"
+  integrity sha512-PwDMkFxDTjj4+l3Csxp+IEXjfb59KnmAPdmDSMMDV8oZSrCnVKCHWSALWluBWpVZYcEsgCsQCCGocSErAyr1bw==
+  dependencies:
+    "@cloudflare/workers-honeycomb-logger" "^2.3.3"
+
+"@cloudflare/workers-honeycomb-logger@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-honeycomb-logger/-/workers-honeycomb-logger-2.3.3.tgz#10eb81e5be3a137ae177e417db2802f9ac8f8e1a"
+  integrity sha512-2HqQWZnBDSf41UWKz6zSMQlTuLb+P9LaqQXQEowMJIfzie3aEKk/bZLTfLzCRLOq9cn4Rhgawm8pha4rJpvS4Q==
+  dependencies:
+    "@cloudflare/workers-types" "^3.2.0"
+    "@types/uuid" "^8.3.0"
+    dotenv "^9.0.2"
+    uuid "^8.3.2"
+
+"@cloudflare/workers-types@^3.2.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-3.19.0.tgz#f3791b80b23f7cf0072f2e67e98aa37801204b6c"
+  integrity sha512-0FRcsz7Ea3jT+gc5gKPIYciykm1bbAaTpygdzpCwGt0RL+V83zWnYN30NWDW4rIHj/FHtz+MIuBKS61C8l7AzQ==
+
 "@cloudflare/workers-types@^4.20230228.0":
   version "4.20230228.0"
   resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20230228.0.tgz#f2311f4f8943f15d097426bcb9a0e7d3aa5b5c1d"
@@ -3439,6 +3461,11 @@
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.2.tgz#fc25ad9943bcac11cceb8168db4f275e0e72e756"
   integrity sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==
+
+"@types/uuid@^8.3.0":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/ws@^8.2.2":
   version "8.2.2"
@@ -6124,6 +6151,11 @@ dotenv@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+
+dotenv@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-9.0.2.tgz#dacc20160935a37dea6364aa1bef819fb9b6ab05"
+  integrity sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==
 
 duplexer@^0.1.2:
   version "0.1.2"

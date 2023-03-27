@@ -1,4 +1,19 @@
+import honeycombPlugin from '@cloudflare/pages-plugin-honeycomb';
+
 import Logtail from './_logtail';
+
+const honeycomb = (
+  context: EventContext<
+    {HONEYCOMB_API_KEY: string; HONEYCOMB_DATASET: string},
+    any,
+    unknown
+  >,
+) => {
+  return honeycombPlugin({
+    apiKey: context.env.HONEYCOMB_API_KEY,
+    dataset: context.env.HONEYCOMB_DATASET,
+  })(context);
+};
 
 // Respond to OPTIONS method.
 export const onRequestOptions: PagesFunction = async () => {
@@ -25,4 +40,4 @@ const setCORSHeaders = async (
 const logtail = new Logtail();
 
 // Chain middlewares To all responses.
-export const onRequest = [setCORSHeaders, logtail.middleware];
+export const onRequest = [honeycomb, setCORSHeaders, logtail.middleware];
