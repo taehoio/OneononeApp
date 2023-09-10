@@ -37,9 +37,6 @@ export default class Logtail {
     const {request} = context;
     const response = await context.next();
 
-    const cf = request.cf;
-    delete cf.tlsExportedAuthenticator;
-
     const log = JSON.stringify({
       dt: new Date().toISOString(),
       level: 'info',
@@ -53,7 +50,7 @@ export default class Logtail {
           url: request.url,
           method: request.method,
           headers: this.metadataFromHeaders(request.headers),
-          cf: cf,
+          cf: request.cf,
         },
         response: {
           headers: this.metadataFromHeaders(response.headers),
