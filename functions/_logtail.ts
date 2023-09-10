@@ -38,7 +38,6 @@ export default class Logtail {
     const response = await context.next();
 
     const cf = request.cf;
-    delete cf.tlsClientAuth;
     delete cf.tlsExportedAuthenticator;
 
     const log = JSON.stringify({
