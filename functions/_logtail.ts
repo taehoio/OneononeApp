@@ -1,75 +1,45 @@
-export default class Logtail {
-  private logtailApiURL = 'https://in.logtail.com/';
-  private workerId: string;
-  private workerStartTime: string;
+import {Logtail} from '@logtail/edge';
 
-  constructor() {
-    this.workerStartTime = new Date().toISOString();
-    this.workerId = this.generateId(6);
+export const log: PagesFunction<{
+  LOGTAIL_SOURCE_TOKEN: string;
+  ENVIRONMENT: string;
+}> = async context => {
+  if (!context.env.LOGTAIL_SOURCE_TOKEN) {
+    return await context.next();
   }
 
-  private generateId(len: number): string {
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';
-    for (let i = 0; i < len; i += 1) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
+  const logger = new Logtail(
+    context.env.LOGTAIL_SOURCE_TOKEN!,
+  ).withExecutionContext(context);
 
-  private metadataFromHeaders(headers: Headers): Record<string, string> {
-    const metadata = {};
-    Array.from(headers).forEach(([key, value]) => {
-      metadata[key] = value;
-    });
-    return metadata;
-  }
+  const {request, env} = context;
 
-  public middleware = async (
-    context: EventContext<unknown, any, unknown>,
-  ): Promise<Response> => {
-    const sourceToken = context.env?.['LOGTAIL_SOURCE_TOKEN'];
-    const environment = context.env?.['ENVIRONMENT'];
-    if (!sourceToken || !environment) {
-      return context.next();
-    }
+  const now = performance.now();
+  const response = await context.next();
+  const elapsed = performance.now() - now;
+  const {origin, pathname} = new URL(request.url);
 
-    const {request} = context;
-    const response = await context.next();
+  logger.info('', {
+    dt: new Date().toISOString(),
+    environment: env.ENVIRONMENT,
+    service: '1on1',
+    type: 'access',
+    request: {
+      url: request.url,
+      origin,
+      pathname,
+      method: request.method,
+      headers: Object.fromEntries(request.headers.entries()),
+      cf: 'cf' in request ? request.cf : null,
+    },
+    response: {
+      status_code: response.status,
+      headers: Object.fromEntries(response.headers.entries()),
+    },
+    elapsed_ms: elapsed,
+  });
 
-    const log = JSON.stringify({
-      dt: new Date().toISOString(),
-      level: 'info',
-      environment,
-      metadata: {
-        cloudflare_worker: {
-          worker_id: this.workerId,
-          worker_start_time: this.workerStartTime,
-        },
-        request: {
-          url: request.url,
-          method: request.method,
-          headers: this.metadataFromHeaders(request.headers),
-          cf: request.cf,
-        },
-        response: {
-          headers: this.metadataFromHeaders(response.headers),
-          status_code: response.status,
-        },
-      },
-    });
+  return response;
+};
 
-    const requestToLogtail = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${context.env['LOGTAIL_SOURCE_TOKEN']}`,
-        'Content-Type': 'application/json',
-      },
-      body: log,
-    };
-
-    context.waitUntil(fetch(this.logtailApiURL, requestToLogtail));
-
-    return response;
-  };
-}
+export const onRequest = [log];
