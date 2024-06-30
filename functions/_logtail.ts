@@ -1,6 +1,6 @@
 import {Logtail} from '@logtail/edge';
 
-export const log: PagesFunction<{
+export const logtail: PagesFunction<{
   LOGTAIL_SOURCE_TOKEN: string;
   ENVIRONMENT: string;
 }> = async context => {

@@ -1,6 +1,6 @@
 import honeycombPlugin from '@cloudflare/pages-plugin-honeycomb';
 
-import Logtail from './_logtail';
+import {logtail} from './_logtail';
 
 const honeycomb = (
   context: EventContext<
@@ -37,7 +37,5 @@ const setCORSHeaders = async (
   return response;
 };
 
-const logtail = new Logtail();
-
 // Chain middlewares To all responses.
-export const onRequest = [honeycomb, setCORSHeaders, logtail.middleware];
+export const onRequest = [honeycomb, setCORSHeaders, logtail];

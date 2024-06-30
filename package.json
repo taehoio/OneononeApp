@@ -47,7 +47,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "@cloudflare/workers-types": "^4.20230228.0",
+    "@cloudflare/workers-types": "^4.20240620.0",
     "@openapitools/openapi-generator-cli": "^2.5.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
