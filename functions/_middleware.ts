@@ -40,4 +40,4 @@ const setCORSHeaders = async (
 const logtail = new Logtail();
 
 // Chain middlewares To all responses.
-export const onRequest = [honeycomb, setCORSHeaders, logtail.middleware];
+export const onRequest = [setCORSHeaders];
